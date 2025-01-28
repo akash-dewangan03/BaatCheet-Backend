@@ -7,7 +7,7 @@ exports.connect = () => {
   mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      connectTimeoutMS: 20000,
+      // connectTimeoutMS: 20000,
     })
     .then(() => console.log("DB Connected Successfully"))
     .catch((error) => {
