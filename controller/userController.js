@@ -124,27 +124,27 @@ exports.getAllUsers = async (req, res, next) => {
 
 exports.setAvatar = async (req, res, next) => {
   try {
-    const userid = req.params.id;
+    const userId = req.params.id;
     const avatarImage = req.body.image;
     const userData = await User.findByIdAndUpdate(
-      userid,
+      userId,
       {
         isAvatarImageSet: true,
-        avatarImage,
+        avatarImage: avatarImage,
       },
       { new: true }
     );
     return res.json({
-      message: "avatar set successfully",
+      message: "Avatar set successfully",
       success: true,
       isSet: userData.isAvatarImageSet,
       image: userData.avatarImage,
     });
   } catch (error) {
-    return res.json({
-      message: "error in set avatar",
+    return res.status(500).json({
+      message: "Error in setting avatar",
       success: false,
-      data: error,
+      error: error.message,  
     });
   }
 };
